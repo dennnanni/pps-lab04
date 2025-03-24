@@ -36,4 +36,4 @@ object Ex1ComplexNumbers:
       def asString(): String = complex match
         case ComplexImpl(re, 0) => re.toString
         case ComplexImpl(0, im) => im + "i"
-        case _ => re + (if im < 0 then " - " + (-im) else " + " + im) + "i"
+        case _ => re() + (if im() < 0 then " - " + (-im()) else " + " + im()) + "i"
