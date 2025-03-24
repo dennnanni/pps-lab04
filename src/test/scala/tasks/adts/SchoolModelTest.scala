@@ -10,8 +10,9 @@ class SchoolModelTest:
   val schoolADT: SchoolModule = BasicSchoolModule
   import schoolADT.*
 
+  val school = emptySchool
+
   @Test def testCreateSchool(): Unit =
-    val school = emptySchool
     assertEquals(nil(), school.teachers)
     assertEquals(nil(), school.courses)
 

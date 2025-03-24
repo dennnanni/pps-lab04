@@ -127,9 +127,13 @@ object SchoolModel:
 
     extension (school: School)
       def courses: Sequence[String] = school match
-        case SchoolImpl(_, c, _) => c.map(m => m match {case Course(n) => n})
+        case SchoolImpl(_, c, _) => c.map(m => m match
+          case Course(n) => n
+        )
       def teachers: Sequence[String] = school match
-        case SchoolImpl(t, _, _) => t.map(m => m match {case Teacher(n) => n})
+        case SchoolImpl(t, _, _) => t.map(m => m match
+          case Teacher(n) => n
+        )
       def setTeacherToCourse(teacher: Teacher, course: Course): School = ???
       def coursesOfATeacher(teacher: Teacher): Sequence[Course] = ???
       def hasTeacher(name: String): Boolean = ???
