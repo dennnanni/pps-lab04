@@ -36,3 +36,10 @@ class SchoolModelTest:
       .setTeacherToCourse(teacher("nicolas"), course("matematica"))
     assertEquals(cons("nicolas", cons("giulia", nil())), school2.teachers)
     assertEquals(cons("informatica", cons("matematica", nil())), school2.courses)
+
+  @Test def testGetTeacherCourses(): Unit =
+    val school2 = school
+      .setTeacherToCourse(teacher("nicolas"), course("informatica"))
+      .setTeacherToCourse(teacher("giulia"), course("scienze"))
+      .setTeacherToCourse(teacher("nicolas"), course("matematica"))
+    assertEquals(cons(course("informatica"), cons(course("matematica"), nil())), school2.coursesOfATeacher(teacher("nicolas")))

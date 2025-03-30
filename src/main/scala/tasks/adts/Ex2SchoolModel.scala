@@ -130,15 +130,22 @@ object SchoolModel:
         case SchoolImpl(_, c, _) => c.map(m => m match
           case Course(n) => n
         ).distinct()
+
       def teachers: Sequence[String] = school match
         case SchoolImpl(t, _, _) => t.map(m => m match
           case Teacher(n) => n
         ).distinct()
+
       def setTeacherToCourse(teacher: Teacher, course: Course): School = school match
         case SchoolImpl(t, c, tc) =>
           SchoolImpl(t.concat(cons(teacher, nil())), c.concat(cons(course, nil())), tc.concat(cons((teacher, course), nil())))
 
-      def coursesOfATeacher(teacher: Teacher): Sequence[Course] = ???
+      def coursesOfATeacher(teacher: Teacher): Sequence[Course] = school match
+        case SchoolImpl(_, _, tc) => tc.filter(x => x match
+          case (t, _) => t == teacher).map(x => x match
+          case (_, CourseImpl(c)) => CourseImpl(c))
+
+
       def hasTeacher(name: String): Boolean = ???
       def hasCourse(name: String): Boolean = ???
 @main def examples(): Unit =
