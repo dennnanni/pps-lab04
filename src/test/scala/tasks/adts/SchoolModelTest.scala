@@ -17,25 +17,25 @@ class SchoolModelTest:
     .setTeacherToCourse(teacher("giulia"), course("scienze"))
 
   @Test def testCreateSchool(): Unit =
-    assertEquals(nil(), empty.teachers)
-    assertEquals(nil(), empty.courses)
+    assertEquals(nil(), empty.teachers())
+    assertEquals(nil(), empty.courses())
 
   @Test def testAddTeacherCourseToSchool(): Unit =
     val school2 = empty.setTeacherToCourse(teacher("nicolas"), course("informatica"))
-    assertEquals(cons("nicolas", nil()), school2.teachers)
-    assertEquals(cons("informatica", nil()), school2.courses)
+    assertEquals(cons("nicolas", nil()), school2.teachers())
+    assertEquals(cons("informatica", nil()), school2.courses())
 
   @Test def testAddMultipleTeachersAndCoursesToSchool(): Unit =
-    assertEquals(cons("nicolas", cons("riccardo", cons("giulia", nil()))), school.teachers)
-    assertEquals(cons("informatica", cons("matematica", cons("scienze", nil()))), school.courses)
+    assertEquals(cons("nicolas", cons("riccardo", cons("giulia", nil()))), school.teachers())
+    assertEquals(cons("informatica", cons("matematica", cons("scienze", nil()))), school.courses())
 
   @Test def testNoDuplicatesInTeachersAndCourses(): Unit =
     val school2 = empty
       .setTeacherToCourse(teacher("nicolas"), course("informatica"))
       .setTeacherToCourse(teacher("giulia"), course("matematica"))
       .setTeacherToCourse(teacher("nicolas"), course("matematica"))
-    assertEquals(cons("nicolas", cons("giulia", nil())), school2.teachers)
-    assertEquals(cons("informatica", cons("matematica", nil())), school2.courses)
+    assertEquals(cons("nicolas", cons("giulia", nil())), school2.teachers())
+    assertEquals(cons("informatica", cons("matematica", nil())), school2.courses())
 
   @Test def testGetTeacherCourses(): Unit =
     val school2 = empty
