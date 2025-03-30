@@ -3,7 +3,7 @@ package tasks.adts
 import org.junit.*
 import org.junit.Assert.*
 import tasks.adts.SchoolModel.*
-import u03.extensionmethods.Sequences.Sequence.nil
+import u03.extensionmethods.Sequences.Sequence.{cons, nil}
 
 class SchoolModelTest:
 
@@ -16,3 +16,7 @@ class SchoolModelTest:
     assertEquals(nil(), school.teachers)
     assertEquals(nil(), school.courses)
 
+  @Test def testAddTeacherCourseToSchool(): Unit =
+    val school2 = school.setTeacherToCourse(teacher("nicolas"), course("informatica"))
+    assertEquals(cons("nicolas", nil()), school2.teachers)
+    assertEquals(cons("informatica", nil()), school2.courses)
