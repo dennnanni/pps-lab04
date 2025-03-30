@@ -1,7 +1,7 @@
 package tasks.adts
 import u03.extensionmethods.Optionals.*
 import u03.extensionmethods.Sequences.*
-import u03.extensionmethods.Sequences.Sequence.{cons, nil}
+import u03.extensionmethods.Sequences.Sequence.*
 
 /*  Exercise 2: 
  *  Implement the below trait, and write a meaningful test.
@@ -135,7 +135,9 @@ object SchoolModel:
           case Teacher(n) => n
         )
       def setTeacherToCourse(teacher: Teacher, course: Course): School = school match
-        case SchoolImpl(t, c, tc) => SchoolImpl(cons(teacher, t), cons(course, c), cons((teacher, course), tc))
+        case SchoolImpl(t, c, tc) => 
+          SchoolImpl(t.concat(cons(teacher, nil())), c.concat(cons(course, nil())), tc.concat(cons((teacher, course), nil())))
+
       def coursesOfATeacher(teacher: Teacher): Sequence[Course] = ???
       def hasTeacher(name: String): Boolean = ???
       def hasCourse(name: String): Boolean = ???

@@ -20,3 +20,11 @@ class SchoolModelTest:
     val school2 = school.setTeacherToCourse(teacher("nicolas"), course("informatica"))
     assertEquals(cons("nicolas", nil()), school2.teachers)
     assertEquals(cons("informatica", nil()), school2.courses)
+
+  @Test def testAddMultipleTeachersAndCoursesToSchool(): Unit =
+    val school2 = school
+      .setTeacherToCourse(teacher("nicolas"), course("informatica"))
+      .setTeacherToCourse(teacher("riccardo"), course("matematica"))
+      .setTeacherToCourse(teacher("giulia"), course("scienze"))
+    assertEquals(cons("nicolas", cons("riccardo", cons("giulia", nil()))), school2.teachers)
+    assertEquals(cons("informatica", cons("matematica", cons("scienze", nil()))), school2.courses)
