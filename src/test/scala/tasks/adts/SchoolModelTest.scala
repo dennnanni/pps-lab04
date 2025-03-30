@@ -28,3 +28,11 @@ class SchoolModelTest:
       .setTeacherToCourse(teacher("giulia"), course("scienze"))
     assertEquals(cons("nicolas", cons("riccardo", cons("giulia", nil()))), school2.teachers)
     assertEquals(cons("informatica", cons("matematica", cons("scienze", nil()))), school2.courses)
+
+  @Test def testNoDuplicatesInTeachersAndCourses(): Unit =
+    val school2 = school
+      .setTeacherToCourse(teacher("nicolas"), course("informatica"))
+      .setTeacherToCourse(teacher("giulia"), course("matematica"))
+      .setTeacherToCourse(teacher("nicolas"), course("matematica"))
+    assertEquals(cons("nicolas", cons("giulia", nil())), school2.teachers)
+    assertEquals(cons("informatica", cons("matematica", nil())), school2.courses)

@@ -41,6 +41,9 @@ object Sequences:
         case Cons(h, t) => h == elem || contains(elem)
         case Nil() => false
 
+      def distinct(): Sequence[A] = l match
+        case Cons(h, t) => Cons(h, t.filter(x => x != h).distinct())
+        case _ => Nil()
 
     def of[A](n: Int, a: A): Sequence[A] =
       if (n == 0) then Nil[A]() else Cons(a, of(n - 1, a))
