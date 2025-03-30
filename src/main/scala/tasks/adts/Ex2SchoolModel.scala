@@ -146,7 +146,8 @@ object SchoolModel:
           case (_, CourseImpl(c)) => CourseImpl(c))
 
 
-      def hasTeacher(name: String): Boolean = ???
+      def hasTeacher(name: String): Boolean = school match
+        case SchoolImpl(t, _, _) => t.contains(teacher(name))
       def hasCourse(name: String): Boolean = ???
 @main def examples(): Unit =
   import SchoolModel.BasicSchoolModule.*

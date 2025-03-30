@@ -38,7 +38,7 @@ object Sequences:
 
       @tailrec
       def contains(elem: A): Boolean = l match
-        case Cons(h, t) => h == elem || contains(elem)
+        case Cons(h, t) => h == elem || t.contains(elem)
         case Nil() => false
 
       def distinct(): Sequence[A] = l match
