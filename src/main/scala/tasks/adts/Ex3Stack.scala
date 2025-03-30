@@ -28,5 +28,6 @@ object Ex3Stacks:
     extension [A](stack: Stack[A])
       def push(a: A): Stack[A] = Cons(a, stack)
       def pop(): Optional[(A, Stack[A])] = stack match
-        case Nil() => Optional.Empty()
+        case Cons(h, t) => Optional.Just((h, t))
+        case _ => Optional.Empty()
       def asSequence(): Sequence[A] = stack
